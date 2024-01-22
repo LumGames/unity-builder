@@ -47,15 +47,15 @@ jobs:
         projectPath:
           - test-project
         unityVersion:
-          - 2021.3.32f1
-          - 2022.3.13f1
-          - 2023.1.19f1
-          - 2023.2.2f1
+          - 2019.4.40f1
+          - 2022.3.16f1
+          # - 2023.1.19f1
+          # - 2023.2.2f1
         targetPlatform:
-          - StandaloneOSX # Build a macOS standalone (Intel 64-bit) with mono backend.
+          #- StandaloneOSX # Build a macOS standalone (Intel 64-bit) with mono backend.
           - StandaloneWindows64 # Build a Windows 64-bit standalone with mono backend.
-          - StandaloneLinux64 # Build a Linux 64-bit standalone with mono backend.
-          - iOS # Build an iOS player.
+          #- StandaloneLinux64 # Build a Linux 64-bit standalone with mono backend.
+          #- iOS # Build an iOS player.
           - Android # Build an Android .apk.
           - WebGL # WebGL.
     steps:
@@ -88,7 +88,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          buildName: 'GameCI Test Build'
+          buildName: 'Build'
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
@@ -109,7 +109,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          buildName: 'GameCI Test Build'
+          buildName: 'Build'
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
@@ -130,7 +130,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          buildName: 'GameCI Test Build'
+          buildName: 'Build'
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
@@ -144,5 +144,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: Build ${{ matrix.targetPlatform }} on Ubuntu (${{ matrix.unityVersion }})
-          path: build
+          path: build/${{ matrix.targetPlatform }}
           retention-days: 14
